@@ -1,0 +1,43 @@
+10
+
+dir
+1542
+https://192.168.0.222:8443/svn/voip/voip-yunwei/trunk/shell/lnmp/lnmp/conf
+https://192.168.0.222:8443/svn/voip
+
+
+
+2012-02-08T02:38:50.945019Z
+634
+gaverce
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4b0c2a26-bb85-a340-8824-7a76de5d1530
+
+conf_example
+dir
+
+tools
+dir
+
+nginx
+dir
+
+mysql
+dir
+
+php
+dir
+

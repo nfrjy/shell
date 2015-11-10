@@ -1,0 +1,43 @@
+ server
+       {
+               listen       80;
+               server_name  docs.linuxtone.org doc.linuxtone.org docs.linuxtong.com;
+               charset gb2312,utf;
+               index index.php index.html index.htm;
+               root   /data/www/wwwroot/linuxtone/docs.linuxtone.org;
+               error_page 404 =200 /.404.jpg;
+               #error_page 404 /.404.jpg;
+               access_log /log/docs.linuxtone.org.log  combined;
+               location / {
+                         autoindex on; 
+                         autoindex_exact_size off;
+                         autoindex_localtime on;
+                         }
+     
+              location /webstatus {
+        	  stub_status on;
+                 access_log off;
+              }
+
+              location ~ .*\.php?$
+              {
+                   fastcgi_pass 127.0.0.1:9001;
+                   #fastcgi_pass php;
+                   fastcgi_index index.php;
+                   fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+                   include fastcgi_params;
+               }
+            
+               #expires static files
+               location ~ .*\.(htm|html|gif|jpg|jpeg|png|bmp|ico|rar|zip|xml|txt|flv|swf|mid|doc|cur|xls|pdf|txt|mp3|wma)$ {
+                   expires  1y;
+               }
+
+              location ~ .*\.(js|css)?$
+              {
+                   expires      1d;
+
+              }    
+
+         
+       }

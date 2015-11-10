@@ -1,0 +1,58 @@
+ server
+       {
+               listen       80;
+               server_name  linuxtone.org www.linuxtone.org bbs.linuxtone.org bbs.linuxtong.com ;
+               index index.php index.html index.htm;
+               root   /data/www/wwwroot/linuxtone/bbs;
+               #access_log /log/bbs.linuxtone.org.log  combined;
+               #error_log  /usr/local/nginx/logs/error_bbs.linuxtone.org.log; 
+               location / {
+               #bbs rewrite
+                         rewrite ^/archiver/((fid|tid)-[\w\-]+\.html)$   /archiver/index.php?$1 last;
+                         rewrite ^/forum-([0-9]+)-([0-9]+)\.html$   /forumdisplay.php?fid=$1&page=$2 last;
+                         rewrite ^/thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$  /viewthread.php?tid=$1&extra=page%3D$3&page=$2 last;
+                         rewrite ^/space-(username|uid)-(.+)\.html$   /space.php?$1=$2 last;
+                         rewrite ^/tag-(.+)\.html$ /tag.php?name=$1 last;
+                         break;
+               }
+              
+               if ($http_host !~ "^bbs\.linuxtone\.org$") {
+ 		         rewrite  ^(.*)    http://bbs.linuxtone.org$1 permanent;
+	            }
+               #error
+               #error_page 500 502 404 /.404.jpg; 
+ 
+               #auto /
+               if (-d $request_filename){
+                rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;
+               }
+
+               location ~ .*\.(gif|jpg|jpeg|png|bmp|ico|rar|zip|xml|txt|flv|swf|mid|doc|cur|xls|pdf|txt|mp3|wma)$ {
+                   expires  1y;
+               }
+               location ~ .*\.(js|css)?$
+               {
+                   expires      1y;
+               }
+    
+               location /webstatus {
+                  stub_status on;
+                  access_log off;
+               }
+
+               location ~* ^/(attachments|images)/.*\.(php|php5)$
+              {
+                   deny all;
+              }
+ 
+              location ~ .*\.php?$
+              {
+                  fastcgi_pass 127.0.0.1:9001;
+                  #fastcgi_pass unix:/tmp/php-fcgi.sock;
+                  #fastcgi_pass php;
+                  fastcgi_index index.php;
+                  fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+                  include fastcgi_params;
+              }
+         
+       }

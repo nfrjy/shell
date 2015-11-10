@@ -1,0 +1,60 @@
+ server
+       {
+               listen       80;
+               server_name  uc.linuxtone.org uc.linuxtong.com;
+               index index.php;
+               root  /data/www/wwwroot/linuxtone/uc;
+               error_page 404 http://www.linuxtone.org; 
+                
+
+               #auto /
+               if (-d $request_filename){
+               rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;
+                  }
+
+               #optimze test
+               location /data/avatar {
+                   log_not_found off;
+                   access_log   off;
+               location ~ /(.*)_big\.jpg$ {
+                   error_page 404 /images/noavatar_big.gif;
+                }
+
+               location ~ /(.*)_middle\.jpg$ {
+                   error_page 404 /images/noavatar_middle.gif;
+               }
+               location ~ /(.*)_small\.jpg$ {
+                   error_page 404 /images/noavatar_small.gif;
+               }
+    
+               }
+              location ~ .*\.(gif|jpg|jpeg|png|bmp|ico|rar|zip|xml|txt|flv|swf|mid|doc|cur|xls|pdf|txt|mp3|wma)$ {
+                   expires  1y;
+
+
+             }
+             location ~ .*\.(js|css)?$
+             {
+                   expires      1y;
+
+             }
+             #deny exec php for static
+             location ~* ^/images/.*\.(php|php5)$
+             {
+                   deny all;
+             }
+
+              location ~* ^/data/(tmp|avatar)/.*\.(php|php5)$
+             {
+                    deny all;
+             }
+
+               location ~ .*\.php?$
+              {
+                    fastcgi_pass 127.0.0.1:9001;
+                   #fastcgi_pass php;
+                   fastcgi_index index.php;
+                   fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+                   include fastcgi_params;
+              }
+       }

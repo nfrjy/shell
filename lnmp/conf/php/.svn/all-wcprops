@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/php
+END
+php.ini
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/php/php.ini
+END
+php-fpm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/php/php-fpm
+END
+php-fpm.conf
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/php/php-fpm.conf
+END

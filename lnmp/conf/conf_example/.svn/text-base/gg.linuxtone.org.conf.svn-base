@@ -1,0 +1,14 @@
+ server
+       {
+               listen       80;
+               server_name  gg.linuxtone.org;
+               index index.php index.html;
+               root   /data/www/wwwroot/linuxtone/www;
+               #
+               location / {
+                   rewrite ^(.*)    https://www.google.com/webhp?hl=zh-CN last; 
+                     }
+               #error
+               error_page 404 http://www.linuxtone.org;
+                 
+       }

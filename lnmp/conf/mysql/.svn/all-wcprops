@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/mysql
+END
+slave.cnf
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/mysql/slave.cnf
+END
+my.cnf
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/mysql/my.cnf
+END
+innodb.cnf
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/mysql/innodb.cnf
+END
+mysql.sh
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/voip/!svn/ver/634/voip-yunwei/trunk/shell/lnmp/lnmp/conf/mysql/mysql.sh
+END
